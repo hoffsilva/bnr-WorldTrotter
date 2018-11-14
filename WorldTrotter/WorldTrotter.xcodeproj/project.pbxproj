@@ -191,6 +191,11 @@
 			isa = PBXProject;
 			attributes = {
 				ORGANIZATIONNAME = hoffsilva;
+				TargetAttributes = {
+					2E7B33F399C8FF58B866A331 = {
+						DevelopmentTeam = C434CHPZ37;
+					};
+				};
 			};
 			buildConfigurationList = 2E7B35C6B45C7CA263CCC770 /* Build configuration list for PBXProject "WorldTrotter" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -317,6 +322,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = C434CHPZ37;
 				INFOPLIST_FILE = WorldTrotter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = hoffsilva.WorldTrotter;
@@ -388,8 +394,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -398,6 +403,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = C434CHPZ37;
 				INFOPLIST_FILE = WorldTrotter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = hoffsilva.WorldTrotter;
@@ -515,6 +521,7 @@
 				2E7B3676DCE3376FDE233B46 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2E7B3B38F532AB930952F1DC /* Build configuration list for PBXNativeTarget "WorldTrotterUITests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +530,7 @@
 				2E7B321051D353AA9F83F97E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2E7B3F9EE44676D1A286A352 /* Build configuration list for PBXNativeTarget "WorldTrotterTests" */ = {
 			isa = XCConfigurationList;
@@ -531,6 +539,7 @@
 				2E7B36A13A0F2C08E949607B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

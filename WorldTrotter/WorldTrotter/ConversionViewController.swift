@@ -6,6 +6,14 @@
 import UIKit
 
 class ConversionViewController: UIViewController {
+    
+    let numberFormatter: NumberFormatter = {
+        let nf = NumberFormatter()
+        nf.numberStyle = .decimal
+        nf.minimumFractionDigits = 0
+        nf.maximumFractionDigits = 2
+        return nf
+    }()
 
     var isFarenheitToCelsius = true
     
@@ -16,6 +24,7 @@ class ConversionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        textFieldTemperature.delegate = self
         setLabelNames()
     }
 
@@ -47,24 +56,41 @@ class ConversionViewController: UIViewController {
             return  -0.0
         }
     }
+    
+    private func convertTemperature() {
+        if isFarenheitToCelsius {
+            labelConvertedTemperature.text = numberFormatter.string(from: NSNumber(value: convertFarenheitToCelsius()))
+        } else {
+            labelConvertedTemperature.text = numberFormatter.string(from: NSNumber(value: convertCelsiusToFarenheit()))
+        }
+    }
 
     @IBAction func invertConversion() {
         isFarenheitToCelsius = !isFarenheitToCelsius
         setLabelNames()
+        convertTemperature()
     }
     
     @IBAction func convertTemperatureFieldEditingChanged(_ textField: UITextField){
-        if isFarenheitToCelsius {
-            labelConvertedTemperature.text = "\(convertFarenheitToCelsius())"
-        } else {
-            labelConvertedTemperature.text = "\(convertCelsiusToFarenheit())"
-        }
+        convertTemperature()
     }
 
     @IBAction func dismissKeyBoard(_ sender: UITapGestureRecognizer) {
         textFieldTemperature.resignFirstResponder()
     }
 
+}
 
- 
+extension ConversionViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let existingTextHasDecimalSeparator =  textField.text?.range(of: ".")
+        let replacementTextHasDecimalSeparator = string.range(of: ".")
+        let hasLettersInTextField = textField.text?.rangeOfCharacter(from: NSCharacterSet.letters)
+        let teste = string.rangeOfCharacter(from: .letters)
+        if existingTextHasDecimalSeparator != nil, replacementTextHasDecimalSeparator != nil, hasLettersInTextField == nil, teste == nil {
+            return false
+        } else {
+            return true
+        }
+    }
 }
