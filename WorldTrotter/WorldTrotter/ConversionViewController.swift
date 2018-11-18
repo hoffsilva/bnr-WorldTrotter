@@ -26,6 +26,7 @@ class ConversionViewController: UIViewController {
         super.viewDidLoad()
         textFieldTemperature.delegate = self
         setLabelNames()
+        print("Conversion view controller loaded its view.")
     }
 
     private func setLabelNames() {
@@ -93,4 +94,41 @@ extension ConversionViewController: UITextFieldDelegate {
             return true
         }
     }
+}
+
+extension ConversionViewController {
+    //MARK - Silver Challenge : Dark Mode
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        verifyHour()
+    }
+    
+    private func getHour() -> Int{
+        return Calendar.current.component(.hour, from: Date())
+    }
+    
+    private func verifyHour() {
+        if getHour() > 18 || getHour() < 7 {
+            setMode(color: getColor(from: .dark))
+        } else {
+            setMode(color: getColor(from: .light))
+        }
+    }
+    
+    private func setMode(color: UIColor) {
+        self.view.backgroundColor = color
+    }
+    
+    private func getColor(from mode: Mode) -> UIColor {
+        if mode == Mode.dark {
+            return #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        } else {
+            return #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        }
+    }
+}
+
+enum Mode {
+    case light
+    case dark
 }
