@@ -23,6 +23,7 @@ class MapViewController: UIViewController {
         //set it as *the* view of this view controller
         view = mapView
         setSegmentedControl()
+        setButton()
     }
     
     override func viewDidLoad() {
@@ -55,13 +56,17 @@ class MapViewController: UIViewController {
 
     private func setButton() {
         let button = UIButton()
+        button.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         button.titleLabel?.text = "My Location"
         button.addTarget(self, action: #selector(MapViewController.getMyLocation(_:)), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = UIColor.blue
 
         mapView.addSubview(button)
 
-        activeConstraint(constraint: button.bottomAnchor.constraint(equalTo: bottomLayoutGuide.bottomAnchor, constant: 10))
-        activeConstraint(constraint: button.trailingAnchor.constraint(equalTo: mapView.layoutMarginsGuide.trailingAnchor, constant: 30))
+        activeConstraint(constraint: button.bottomAnchor.constraint(equalTo: topLayoutGuide.topAnchor))
+        activeConstraint(constraint: button.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor))
+        activeConstraint(constraint: button.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor))
     }
 
     private func activeConstraint(constraint: NSLayoutConstraint) {
