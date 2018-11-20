@@ -84,8 +84,14 @@ class ConversionViewController: UIViewController {
 
 extension ConversionViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let existingTextHasDecimalSeparator =  textField.text?.range(of: ".")
-        let replacementTextHasDecimalSeparator = string.range(of: ".")
+
+        let currentLocale = Locale.current
+        let decimalSeparator = currentLocale.decimalSeparator ?? "."
+
+        let existingTextHasDecimalSeparator =  textField.text?.range(of: decimalSeparator)
+        let replacementTextHasDecimalSeparator = string.range(of: decimalSeparator)
+
+
         let hasLettersInTextField = textField.text?.rangeOfCharacter(from: NSCharacterSet.letters)
         let teste = string.rangeOfCharacter(from: .letters)
         if existingTextHasDecimalSeparator != nil, replacementTextHasDecimalSeparator != nil, hasLettersInTextField == nil, teste == nil {
